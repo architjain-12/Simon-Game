@@ -41,10 +41,20 @@ function animatePress(currentColour) {
 } 
 
 $(document).keypress(function() {
-    nextSequence();
-    started = true;
-    $(this).unbind();
-    $("h1").text(`Level ${level}`);
+    if (window.matchMedia("(max-width: 767px)").matches) {
+        $(document).bind("tap", function() {
+            nextSequence();
+            started = true;
+            $(this).unbind();
+            $("h1").text(`Level ${level}`);
+        })
+    } else {
+        nextSequence();
+        started = true;
+        $(this).unbind();
+        $("h1").text(`Level ${level}`);
+    }
+    
 });
 
 function checkAnswer(currentLevel) {
@@ -75,10 +85,19 @@ function startOver() {
     level = 0;
     gamePattern = [];
     $(document).keypress(function() {
-        nextSequence();
-        started = true;
-        $(this).unbind();
-        $("h1").text(`Level ${level}`);
+        if (window.matchMedia("(max-width: 767px)").matches) {
+            $(document).bind("tap", function() {
+                nextSequence();
+                started = true;
+                $(this).unbind();
+                $("h1").text(`Level ${level}`);
+            })
+        } else {
+            nextSequence();
+            started = true;
+            $(this).unbind();
+            $("h1").text(`Level ${level}`);
+        }
     });
     userClickedPattern = [];
 }
